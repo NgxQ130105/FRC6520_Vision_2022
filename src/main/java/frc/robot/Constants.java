@@ -16,4 +16,12 @@ public final class Constants {
     //Camera Constant (Vision)
     public static double timeConstant = 0;
     public static double period = 0;
+
+
+    //AimAndMoveJavaConstant
+    public static double CameraHeightInches = 0;
+    public static double TargetHeightFeet = 0;
+    public static double CameraPitchDegrees = 0;
+    public static double TargetDisDegrees = 0;
+
 }

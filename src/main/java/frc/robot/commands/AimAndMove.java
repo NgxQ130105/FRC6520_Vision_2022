@@ -12,6 +12,7 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 
 public class AimAndMove extends CommandBase {
   public AimAndMove() {
@@ -26,14 +27,14 @@ public class AimAndMove extends CommandBase {
   public void execute() {
     
     // CAMERA HEIGHT + TARGET HEIGHT (CHIỀU CAO CAMERA + CHIỀU CAO VẬT THỂ)
-    final double cameraHeightMeters = Units.inchesToMeters(CameraInches);
-    final double targetHeightMeters = Units.feetToMeters(TargetFeet);
+    final double cameraHeightMeters = Units.inchesToMeters(Constants.CameraHeightInches);
+    final double targetHeightMeters = Units.feetToMeters(Constants.TargetHeightFeet);
     
     //HORIZONTAL CAMERA'S ANGLE (GÓC NGANG CỦA CAMERA)
-    final double cameraPitchRadians = Units.degreesToRadians(CamPitchDegree);
+    final double cameraPitchRadians = Units.degreesToRadians(Constants.CameraPitchDegrees);
 
     //TARGET DISTANCE(KHOẢNG CÁCH CAM ĐẾN VẬT THỂ)
-    final double targetPitchRadians = Units.degreesToRadians(TargetDisDegree);
+    final double targetPitchRadians = Units.degreesToRadians(Constants.TargetDisDegrees);
 
     PhotonCamera camera = new PhotonCamera("Tên Camera"); //Vào UI của Photon Vision và gõ đúng tên là được
 
@@ -48,7 +49,7 @@ public class AimAndMove extends CommandBase {
 
     XboxController xboxController = new XboxController(0);
 
-    //Drive motors
+    //Drive motors (Khai left, right motor trong Subsystem đã nhé)
     DifferentialDrive drive = new DifferentialDrive(leftMotor, rightMotor);
 
     double forwardSpeed;
