@@ -20,8 +20,12 @@ public final class Constants {
 
     //AimAndMoveJavaConstant
     public static double CameraHeightInches = 0;
-    public static double TargetHeightFeet = 0;
-    public static double CameraPitchDegrees = 0;
-    public static double TargetDisDegrees = 0;
-
+    public static double TargetHeightFeet = 8.66141732; //Không chỉnh lại vì đã bám sát theo Manual rồi
+    public static double CameraPitchDegrees = 0; //Đo bằng điện thoại hay gì đấy tùy tính sau 
+    public static double TargetPitchDegrees = 0; //Đo bằng Pipelines trong Photon UI
+    //AimAndMove PID Constants (Linear + Angular kP , kD) + Kiếm trong PhotonUI + Test PID của bot
+    public static double LINEAR_P = 0.1;
+    public static double LINEAR_D = 0.0; 
+    public static double ANGULAR_P = 0.1;
+    public static double ANGULAR_D = 0.0;
 }
