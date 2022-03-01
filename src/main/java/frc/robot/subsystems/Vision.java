@@ -11,24 +11,45 @@ import org.photonvision.common.hardware.VisionLEDMode;
 import org.photonvision.targeting.PhotonTrackedTarget;
 import org.photonvision.targeting.TargetCorner;
 
-import frc.robot.Constants;
+import static frc.robot.Constants.*;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Vision extends SubsystemBase {
-  /** Creates a new Vision. */
+      //Tên Camera lấy từ PhotonVision UI ra      
+      public static PhotonCamera camera = new PhotonCamera(camName);
+
+
+      //High goal target height above ground (Độ cao của vật cần xđịnh so mặt đất)
+      public static final double targetHeightMetters = Units.feetToMeters(TargetHeightFeet);
+      
+      //Camera Mounting (CamHeight - chiều cao từ mặt đất lên tới cam, Pitch - Angle "up" from horizontal)
+      public static final double cameraHeightMeters = Units.inchesToMeters(CameraHeightInches);
+      public static final double cameraPitchRadians = Units.degreesToRadians(CameraPitchDegrees); 
+        
+      // How far from the target we want to be (Khoảng cách từ lens tới băng phản quang hoặc vật thể)
+      public static final double targetPitchRadians = Units.degreesToRadians(TargetPitchDegrees);
+        
+        
+      //PID (Linear thì test có số liệu r bỏ vào còn Angular thì căn trong PhotonUI )
+      PIDController forwardController = new PIDController(LINEAR_P, 0, LINEAR_D);
+      PIDController turnController = new PIDController(ANGULAR_P, 0, ANGULAR_D);
+      XboxController xboxController = new XboxController(0);
+
+
   private FilterValues filtervalues;
-  PhotonCamera camera;
   private LinearFilter xOffSetFilter;
   private LinearFilter yOffSetFilter; 
-   
-  public Vision() {
-    camera = new PhotonCamera("Logitech C920"); 
+  
 
-    xOffSetFilter = LinearFilter.singlePoleIIR(Constants.timeConstant, Constants.period);
-    yOffSetFilter = LinearFilter.singlePoleIIR(Constants.timeConstant, Constants.period);
+  public Vision() {
+    xOffSetFilter = LinearFilter.singlePoleIIR(timeConstant, period);
+    yOffSetFilter = LinearFilter.singlePoleIIR(timeConstant, period);
 
   }
 
@@ -72,6 +93,8 @@ public class Vision extends SubsystemBase {
     public double getFilteredYOffset(){
       return this.filteredYOffset;
     }
+
+
   }
 
 }

@@ -3,7 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import org.photonvision.SimVisionTarget;
+
+import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.numbers.N1;
+import edu.wpi.first.math.numbers.N7;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -32,8 +37,8 @@ public final class Constants {
     public static double ANGULAR_P = 0;
     public static double ANGULAR_D = 0;
 
-    //Vision Simulator Subsystem 
-    public static String camName = "Tên Camera";
+    //Vision Subsystem 
+    public static String camName = "Tên Camera"; // Xem trong UI của PhotonLib qua web
     public static double camDiagFOV = 0; // degrees
     public static double camPitch = 0; // degrees
     public static double camHeightOffGround = 0; // meters
@@ -41,5 +46,25 @@ public final class Constants {
     public static int camResolutionWidth = 0; // pixels
     public static int camResolutionHeight = 0; // pixels
     public static double minTargetArea = 0; // square pixels
-    public static Transform2d cameraToRobot;
+    public static Transform2d cameraToRobot; //I DUNNO THIS ONE
+
+    // DRIVE TRAIN SIM CONSTANT
+    //Linear Constant Values
+    public static double kVLinear = 0; 
+    public static double kALinear = 0;
+    public static double kVAngular = 0;
+    public static double kAAngular = 0;
+
+    //Dimensional size of robots
+    public static double driveMotor = 0;
+    public static double gearing = 0;
+    public static double jKgMetersSquared =0;
+    public static double massKg = 0;
+    public static double wheelRadiusMeters = 0;
+    public static double trackWidthMeters = 0;
+    public static SimVisionTarget kFarTarget;
+    public static Matrix<N7, N1> measurementStdDevs; 
+ 
+
+
 }
